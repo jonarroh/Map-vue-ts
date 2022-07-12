@@ -25,6 +25,16 @@ export default defineComponent({
 			map.on('style.load', () => {
 				map.setFog({}); // Set the default atmosphere style
 			});
+
+			const locationPopup = new MapboxGl.Popup().setLngLat(
+				userLocation.value
+			).setHTML(`<h4>You are here</h4>
+        <p>${userLocation.value[0]}, ${userLocation.value[1]}</p>`);
+
+			const locationMarker = new MapboxGl.Marker()
+				.setLngLat(userLocation.value)
+				.setPopup(locationPopup)
+				.addTo(map);
 		};
 
 		onMounted(() => {
