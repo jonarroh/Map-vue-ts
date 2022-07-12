@@ -6,8 +6,8 @@ const actions: ActionTree<PlacesState, StateInterface> = {
 	getInialLocation({ commit }) {
 		navigator.geolocation.getCurrentPosition(position => {
 			commit('setUserLocation', [
-				position.coords.latitude,
-				position.coords.longitude
+				position.coords.longitude,
+				position.coords.latitude
 			]);
 		});
 	}

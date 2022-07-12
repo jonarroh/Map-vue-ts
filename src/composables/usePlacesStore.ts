@@ -1,4 +1,4 @@
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import { StateInterface } from '../store';
 
@@ -11,5 +11,11 @@ export const usePlacesStore = () => {
 		}
 	});
 
-	return {};
+	return {
+		isLoading: computed(() => store.state.places.isLoading),
+		userLocation: computed(() => store.state.places.userLocation),
+		isLocationReady: computed<boolean>(
+			() => store.getters['places/isLocationReady']
+		)
+	};
 };
