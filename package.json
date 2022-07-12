@@ -8,10 +8,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "mapbox-gl": "^2.9.1",
     "vue": "^3.2.25",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
+    "@types/mapbox-gl": "^2.7.3",
     "@vitejs/plugin-vue": "^2.3.3",
     "@vue/cli-plugin-vuex": "~5.0.0",
     "typescript": "^4.5.4",

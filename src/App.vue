@@ -4,6 +4,7 @@ import HomeView from './view/HomeView.vue';
 
 <template>
 	<HomeView></HomeView>
+	<img src="./assets/logo.png" alt="logo" class="logo" />
 </template>
 
 <style>
@@ -14,5 +15,11 @@ import HomeView from './view/HomeView.vue';
 	text-align: center;
 	color: #2c3e50;
 	margin-top: 60px;
+}
+.logo {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 100px;
 }
 </style>
