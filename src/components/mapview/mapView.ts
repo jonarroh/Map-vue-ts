@@ -42,14 +42,12 @@ export default defineComponent({
 
 		onMounted(() => {
 			if (isLocationReady.value) {
-				console.log(userLocation.value, 'userLocation');
 				return initMap();
 			}
 		});
 
 		watch(isLocationReady, newVal => {
 			if (newVal) {
-				console.log(newVal, 'newVal');
 				initMap();
 			}
 		});
