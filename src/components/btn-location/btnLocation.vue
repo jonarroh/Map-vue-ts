@@ -44,5 +44,6 @@ button {
 	position: fixed;
 	top: 10px;
 	right: 10px;
+	height: 38px;
 }
 </style>
