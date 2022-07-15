@@ -10,6 +10,10 @@ const actions: ActionTree<PlacesState, StateInterface> = {
 				position.coords.latitude
 			]);
 		});
+	},
+
+	async searchPlacesByTerm({ commit, state }, term: string) {
+		console.log('vuex', term);
 	}
 };
 
