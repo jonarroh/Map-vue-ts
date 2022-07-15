@@ -1,6 +1,8 @@
 import { ActionTree } from 'vuex';
 import { PlacesState } from './state';
 import { StateInterface } from '../index';
+import { searchApi } from '../../api';
+import { PlacesResponse } from '../../interfaces/places';
 
 const actions: ActionTree<PlacesState, StateInterface> = {
 	getInialLocation({ commit }) {
@@ -13,7 +15,16 @@ const actions: ActionTree<PlacesState, StateInterface> = {
 	},
 
 	async searchPlacesByTerm({ commit, state }, term: string) {
-		console.log('vuex', term);
+		const resp = await searchApi.get<PlacesResponse>(
+			`/${term}.json`,
+			{
+				params: {
+					proximity: state.userLocation?.join(',')
+				}
+			}
+		);
+
+		console.log(resp.data.features);
 	}
 };
 
