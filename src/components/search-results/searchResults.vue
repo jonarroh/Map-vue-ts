@@ -1,10 +1,19 @@
 <script lang="ts" src="./SearchResults"></script>
 
 <template>
-	<ul class="list-group mt-2">
-		<li class="list-group-item list-group-item-action">
-			<h5>Nombre del lugar</h5>
-			<p>esto es un texto</p>
+	<div v-if="isLoadingPlaces" class="alert alert-primary text-center">
+		<h5>cargando...</h5>
+		<span>espere por favor</span>
+	</div>
+
+	<ul class="list-group mt-2" v-else-if="places.length > 0">
+		<li
+			class="list-group-item list-group-item-action"
+			v-for="place in places"
+			:key="place.id"
+		>
+			<h5>{{ place.text }}</h5>
+			<p>{{ place.place_name }}</p>
 			<div align="right">
 				<button class="btn btn-outline-success btn-sm">
 					Direccion
