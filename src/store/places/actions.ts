@@ -27,7 +27,7 @@ const actions: ActionTree<PlacesState, StateInterface> = {
 			commit('setPlaces', []);
 			return [];
 		}
-		console.log(state.userLocation);
+
 		if (!state.userLocation) {
 			throw new Error('no hay ubicación del usuario');
 		}
@@ -45,7 +45,7 @@ const actions: ActionTree<PlacesState, StateInterface> = {
 			}
 		);
 		commit('setPlaces', resp.data.features);
-		console.log(resp.data.features);
+
 		return resp.data.features;
 	}
 };

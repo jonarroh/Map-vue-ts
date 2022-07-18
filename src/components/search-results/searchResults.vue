@@ -10,12 +10,21 @@
 		<li
 			class="list-group-item list-group-item-action"
 			v-for="place in places"
+			:class="{ active: place.id === activePlace }"
 			:key="place.id"
+			@click="onPlaceClick(place)"
 		>
 			<h5>{{ place.text }}</h5>
 			<p>{{ place.place_name }}</p>
 			<div align="right">
-				<button class="btn btn-outline-success btn-sm">
+				<button
+					class="btn btn-outline-success btn-sm"
+					:class="
+						place.id === activePlace
+							? 'btn-outline-light'
+							: 'btn-outline-success'
+					"
+				>
 					Direccion
 				</button>
 			</div>
