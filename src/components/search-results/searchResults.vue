@@ -24,6 +24,7 @@
 							? 'btn-outline-light'
 							: 'btn-outline-success'
 					"
+					@click="getRoute(place)"
 				>
 					Direccion
 				</button>

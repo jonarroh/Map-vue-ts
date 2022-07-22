@@ -1,4 +1,4 @@
-import mapboxgl from 'mapbox-gl';
+import mapboxgl, { MapboxEvent } from 'mapbox-gl';
 import { MutationTree } from 'vuex';
 import { Feature } from '../../interfaces/places';
 import { mapState } from './state';
@@ -28,6 +28,68 @@ const mutation: MutationTree<mapState> = {
 
 			state.markers.push(marker);
 		}
+
+		//limpiar polyline
+		if (state.map?.getLayer('RouteString')) {
+			state.map?.removeLayer('RouteString');
+			state.map?.removeSource('RouteString');
+		}
+	},
+	setRoutePolyline(state, coords: number[][]) {
+		const start = coords[0];
+		const end = coords[coords.length - 1];
+
+		//definir los bounds
+		const bounds = new mapboxgl.LngLatBounds(
+			[start[0], start[1]],
+			[start[0], start[1]]
+		);
+		//agregar cada punto a los bounds
+		for (const coord of coords) {
+			const newCords: [number, number] = [coord[0], coord[1]];
+			bounds.extend(newCords);
+		}
+
+		state.map?.fitBounds(bounds, {
+			padding: 300
+		});
+
+		//polyline
+		const soucerData: mapboxgl.AnySourceData = {
+			type: 'geojson',
+			data: {
+				type: 'FeatureCollection',
+				features: [
+					{
+						type: 'Feature',
+						properties: {},
+						geometry: {
+							type: 'LineString',
+							coordinates: coords
+						}
+					}
+				]
+			}
+		};
+		if (state.map?.getSource('RouteString')) {
+			state.map?.removeLayer('RouteString');
+			state.map?.removeSource('RouteString');
+		}
+
+		state.map?.addSource('RouteString', soucerData);
+		state.map?.addLayer({
+			id: 'RouteString',
+			type: 'line',
+			source: 'RouteString',
+			layout: {
+				'line-cap': 'round',
+				'line-join': 'round'
+			},
+			paint: {
+				'line-color': '#3bb2d0',
+				'line-width': 3
+			}
+		});
 	}
 };
 

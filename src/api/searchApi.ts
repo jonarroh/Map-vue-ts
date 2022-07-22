@@ -6,7 +6,7 @@ const searchApi = axios.create({
 		limit: 5,
 		languaje: 'es',
 		access_token:
-			'pk.eyJ1Ijoiam9uYXJybyIsImEiOiJjbDVpcTMxamQwMDhtM2NuMWpqcjE5ZGQyIn0.8KE9VFUga4F3KFyJV8Szgw'
+			'pk.eyJ1Ijoiam9uYXJybyIsImEiOiJjbDV1MDFpdjMwODByM2RqeWI1MHdoNjkwIn0.yAxNGNuv4d1wnX5vameHbQ'
 	}
 });
 
